@@ -5,26 +5,23 @@ import boto3
 
 s3 = boto3.client('s3')
 
-input_bucket = os.environ['INPUT_BUCKET']
-output_bucket = os.environ['OUTPUT_BUCKET']
-region = os.environ['REGION']
+INPUT_BUCKET = os.environ['INPUT_BUCKET']
+OUTPUT_BUCKET = os.environ['INPUT_BUCKET']
+REGION = os.environ['REGION']
 
-def upload_to_input_s3(file_path):
+def upload_file_to_input_s3(filepath):
     key = f"uploads/{uuid.uuid4()}.mp4"
-    s3.upload_file(file_path, input_bucket, key)
-    url = f"https://{input_bucket}.s3.{region}.amazonaws.com/{key}"
+    s3.upload_file(filepath, INPUT_BUCKET, key)
+
+    url = f"https://{INPUT_BUCKET}.s3.{REGION}amazonaws.com/{key}"
+
     return url
 
 
-def upload_to_output_s3(file_path):
+def upload_file_to_output_s3(filepath):
     key = f"uploads/{uuid.uuid4()}.mp4"
-    s3.upload_file(file_path, output_bucket ,  key)
-    url = f"https://{output_bucket}.s3.{region}.amazonaws.com/{key}"
+    s3.upload_file(filepath, OUTPUT_BUCKET, key)
+
+    url = f"https://{OUTPUT_BUCKET}.s3.{REGION}amazonaws.com/{key}"
     return url
-
-
-# s3 bucket
-#     upload
-#         nwjddjdj229.mp4
-
 
