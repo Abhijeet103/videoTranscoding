@@ -18,8 +18,8 @@ def upload_file_to_input_s3(filepath):
     return url
 
 
-def upload_file_to_output_s3(filepath):
-    key = f"uploads/{uuid.uuid4()}.mp4"
+def upload_file_to_output_s3(filepath , file_name):
+    key = f"uploads/{file_name}.mp4"
     s3.upload_file(filepath, OUTPUT_BUCKET, key)
 
     url = f"https://{OUTPUT_BUCKET}.s3.{REGION}amazonaws.com/{key}"
