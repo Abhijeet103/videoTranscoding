@@ -2,6 +2,7 @@ import subprocess
 import uuid
 from email.utils import unquote
 from upload_service  import upload_file_to_output_s3
+from db_service import upload_video
 
 import  boto3
 
@@ -35,8 +36,11 @@ def lambda_handler(event, context):
     run_ffmpeg(input_path, output_720, "720")
 
     name = uuid.uuid4()
-    url_480= upload_file_to_output_s3(output_480 , name + "_480.mp4" )
+    url_480 = upload_file_to_output_s3(output_480 , name + "_480.mp4" )
     url_720 =upload_file_to_output_s3(output_720 , name + "_720.mp4" )
+    upload_video("xyz" , "abcd" , url_480 , url_720  )
+
+
 
     # Save it in db
 

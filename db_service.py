@@ -14,7 +14,24 @@ class Video(Base) :
     id = Column(Integer, primary_key=True)
     title = Column(String)
     caption = Column(String)
-    url_240p = Column(String)
     url_480p = Column(String)
     url_720p = Column(String)
+
+
+
+def upload_video(title , caption , url_480p , url_720p ):
+    db = sessionLocal()
+    video = Video(title , caption , url_480p , url_720p)
+    db.add(video)
+    db.commit()
+
+
+def delete_video():
+    pass
+
+def get_video():
+    pass
+
+
+
 
