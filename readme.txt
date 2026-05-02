@@ -8,3 +8,11 @@
 
 on upload to input bucket start the ffmpeg function to transcode the video
 upload to output bucket save url in Model
+
+
+cmd to run ensible
+
+ansible-playbook -i inventory.ini playbook.yml \
+  --private-key=ansible.pem \
+  -u ec2-user
+
