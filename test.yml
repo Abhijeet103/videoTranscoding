@@ -2,6 +2,9 @@
 hosts :  web
 become : yes
 
+vars :
+  port_mapping : "80:8080"
+
 tasks :
   - name : Install Docker
     apt :
@@ -18,4 +21,10 @@ tasks :
       image : abhijeet/my-app:latest
       state : started
       ports :
-        - "80:8080"
+        - {{port_mapping}}
+
+handlers :
+  - name : restart
+    service :
+      name : app
+      state : restarted
