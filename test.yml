@@ -1,0 +1,21 @@
+# docker with Ansible
+hosts :  web
+become : yes
+
+tasks :
+  - name : Install Docker
+    apt :
+      name : docker.io
+      state : present
+  - name: Start docker
+    service :
+      name : docker
+      state : started
+
+  - name : Run app container
+    docker_container :
+      name  : my_app
+      image : abhijeet/my-app:latest
+      state : started
+      ports :
+        - "80:8080"
